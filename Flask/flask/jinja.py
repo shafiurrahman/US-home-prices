@@ -1,6 +1,10 @@
 #### Building Url Dynamically
 ## Variable Rule
 ### Jinja 2 Template Engine
+''' multiple ways of reading variable from backend to html file we demonstrated one type
+{{}}   these are expression to print outpput in html
+{%.....%}   this is used for conditional statements,forloop,whileloop
+{#....#} this is used for single line comment'''
 
 from flask import Flask,render_template,request,redirect,url_for
 '''
