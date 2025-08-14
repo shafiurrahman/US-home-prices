@@ -25,6 +25,8 @@ def index():
 @app.route('/about')
 def about():
     return render_template('about.html')
+
+
 @app.route("/form",methods=['GET','POST'])
 def form():
     if request.method=='POST':
@@ -50,6 +52,35 @@ def success(score):
     else:
         res='failed ^^^^^^'
     return render_template('result.html',result=res)  # this {{result}} is jinja2 template accessed in result.html
+    
+@app.route('/success_re/<int:score>')    # works with string  if return is 'your score'+score becasue of concat
+def success_re(score):
+    res=''
+    if score >=50 and score <=100:
+        res='********passed'
+    elif score >100:
+        res='?? enter correct number'
+    else:
+        res='failed ^^^^^^'
+    exp={'score':score,'result':res}
+    
+    return render_template('result1.html',result=exp)
+
+
+#combine all together for this
+@app.route('/submitr',methods=['POST','GET'])
+def submitr():
+    totalscore=0
+    if request.method=='POST':
+        science=float(request.form['science'])
+        maths=float(request.form['maths'])
+        c=float(request.form['c'])
+        datascience=float(request.form['datascience'])
+
+        total_score=(science+maths+c+datascience)/4
+        return render_template('submitr.html')
+    return redirect(url_for('result1.html',total_scorescore=total_score))
+            
     
 
 
